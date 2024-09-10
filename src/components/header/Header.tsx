@@ -1,23 +1,27 @@
-import { BiSearch } from "react-icons/bi"; 
+import {BiSearch} from "react-icons/bi";
 import Container from "../container/Container"
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Badge} from "antd";
+import {FaHeart, FaRegHeart} from "react-icons/fa";
+import {Recipe} from "../../types";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store/store.ts";
 
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const {products}: { products: Recipe[] } = useSelector((state: RootState) => state.like);
 
-   const [searchTerm, setSearchTerm] = useState<string>("");
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Search term:", searchTerm);
+  };
 
-   const handleSearch = (e: React.FormEvent) => {
-     e.preventDefault(); 
-     console.log("Search term:", searchTerm);
-   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-     setSearchTerm(e.target.value); 
-   };
-  
   return (
       <div className="bg-gray-800">
         <Container>
@@ -45,7 +49,7 @@ const Header = () => {
                 </button>
               </form>
             </div>
-            <ul className="flex gap-6">
+            <ul className="flex justify-center items-center gap-6">
               <li className="text-lg border-b border-transparent text-white transition-transform hover:border-gray-400">
                 <Link to="/">Home</Link>
               </li>
@@ -55,6 +59,10 @@ const Header = () => {
               <li className="text-lg border-b border-transparent text-white transition-transform hover:border-gray-400">
                 <Link to="/">Help</Link>
               </li>
+              <li className="text-lg">
+                <Link className="flex justify-center items-center" to="/liked"><Badge count={products.length}>{products.length > 0 ?
+                    <FaHeart className="text-red-600 text-[24px]"/> :
+                    <FaRegHeart className="text-red-600 text-[24px]"/>}</Badge></Link></li>
             </ul>
           </div>
         </Container>

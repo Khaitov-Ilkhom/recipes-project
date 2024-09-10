@@ -1,15 +1,27 @@
-import { useState } from "react";
-import { Recipe } from "../../types"
-import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
-import { BiTime } from "react-icons/bi";
-import { FaUser } from "react-icons/fa";
-import { GiCookingPot, GiFireBowl } from "react-icons/gi"
+import {Recipe} from "../../types"
+import {AiFillHeart, AiFillStar, AiOutlineHeart} from "react-icons/ai";
+import {BiTime} from "react-icons/bi";
+import {FaUser} from "react-icons/fa";
+import {GiCookingPot, GiFireBowl} from "react-icons/gi"
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../redux/store/store.ts";
+import {addToLiked} from "../../redux/slice/likeSlice.ts";
 
 
-const Card = ({recipe} : {recipe: Recipe} ) => {
+const Card = ({recipe}: { recipe: Recipe }) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch<AppDispatch>();
+  const {products}: { products: Recipe[] } = useSelector((state: RootState) => state.like);
 
+  const isProductLiked = (id) => {
+    return products?.some(product => product.id === id)
+  };
 
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const handleLike = (product) => {
+    dispatch(addToLiked(product));
+  }
+
 
   return (
       <div
@@ -21,14 +33,12 @@ const Card = ({recipe} : {recipe: Recipe} ) => {
           <img className="w-full h-56 object-cover" src={recipe.image} alt={recipe.name}/>
           <div className="absolute top-0 right-0 p-2">
             <button
-                onClick={() => setIsFavorite(!isFavorite)}
-                className="text-gray-400 transition-colors duration-300"
+                onClick={() => handleLike(recipe)} className="product-like text-red-500 bg-white p-2 rounded-full text-3xl"
             >
-              {isFavorite ? (
-                  <AiFillHeart size={24} className="text-red-500"/>
-              ) : (
-                  <AiOutlineHeart size={24} className="text-red-500"/>
-              )}
+              {
+                isProductLiked(recipe.id) ? <AiFillHeart className="text-red-500 text-2xl"/> :
+                    <AiOutlineHeart className="text-red-500 text-2xl"/>
+              }
             </button>
           </div>
         </div>
@@ -74,8 +84,8 @@ const Card = ({recipe} : {recipe: Recipe} ) => {
         </div>
 
         <div className="px-6 pb-4">
-          <button
-              className="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 flex items-center justify-center"
+          <button onClick={() => navigate(`/details/${recipe.id}`)}
+                  className="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 flex items-center justify-center"
           >
             <GiCookingPot className="mr-2"/>
             View Recipe Details
@@ -86,3 +96,4 @@ const Card = ({recipe} : {recipe: Recipe} ) => {
 }
 
 export default Card
+
