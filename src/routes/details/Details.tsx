@@ -6,7 +6,26 @@ import {Recipe} from "../../types";
 
 const Details = () => {
   const {id}: string = useParams<Params>()
-  const [recipe, setRecipe] = useState<Recipe>(null);
+  const [recipe, setRecipe] = useState<Recipe>(
+      {
+        id: 0,
+        name: "",
+        ingredients: [],
+        instructions: [],
+        prepTimeMinutes: 0,
+        cookTimeMinutes: 0,
+        servings: 0,
+        difficulty: "",
+        cuisine: "",
+        caloriesPerServing: 0,
+        tags: [],
+        userId: 0,
+        image: "",
+        rating: 0,
+        reviewCount: 0,
+        mealType: []
+      }
+  );
 
   useEffect(() => {
     async function fetchRecipes() {

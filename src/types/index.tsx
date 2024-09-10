@@ -6,7 +6,7 @@ export type Recipe = {
   prepTimeMinutes: number;
   cookTimeMinutes: number;
   servings: number;
-  difficulty: "Easy" | "Medium" | "Hard";
+  difficulty: string;
   cuisine: string;
   caloriesPerServing: number;
   tags: string[];
