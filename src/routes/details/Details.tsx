@@ -4,8 +4,8 @@ import Container from "../../components/container/Container.tsx";
 import {Params, useParams} from "react-router-dom";
 import {Recipe} from "../../types";
 
-const Details = () => {
-  const {id}: string = useParams<Params>()
+const Details: React.FC = () => {
+  const {id}: number = useParams<Params<number>>()
   const [recipe, setRecipe] = useState<Recipe>(
       {
         id: 0,

@@ -14,11 +14,11 @@ const Card = ({recipe}: { recipe: Recipe }) => {
   const dispatch = useDispatch<AppDispatch>();
   const {products}: { products: Recipe[] } = useSelector((state: RootState) => state.like);
 
-  const isProductLiked = (id) => {
+  const isProductLiked = (id: number) => {
     return products?.some(product => product.id === id)
   };
 
-  const handleLike = (product) => {
+  const handleLike = (product: Recipe) => {
     dispatch(addToLiked(product));
   }
 
