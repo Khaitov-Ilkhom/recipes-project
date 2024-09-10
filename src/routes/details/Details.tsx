@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import Header from "../../components/header/Header.tsx";
 import Container from "../../components/container/Container.tsx";
-import {Params, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Recipe} from "../../types";
 
 const Details: React.FC = () => {
-  const {id}: number = useParams<Partial<Params<number>>>()
+  const {id}: number = useParams()
   const [recipe, setRecipe] = useState<Recipe>(
       {
         id: 0,
