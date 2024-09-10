@@ -5,7 +5,7 @@ import {Params, useParams} from "react-router-dom";
 import {Recipe} from "../../types";
 
 const Details: React.FC = () => {
-  const {id}: number = useParams<Params<number>>()
+  const {id}: number = useParams<Partial<Params<number>>>()
   const [recipe, setRecipe] = useState<Recipe>(
       {
         id: 0,
