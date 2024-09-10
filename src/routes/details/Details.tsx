@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import Header from "../../components/header/Header.tsx";
 import Container from "../../components/container/Container.tsx";
-import {useParams} from "react-router-dom";
+import {Params, useParams} from "react-router-dom";
 import {Recipe} from "../../types";
 
 const Details = () => {
-  const {id}: number = useParams()
+  const {id}: string = useParams<Params>()
   const [recipe, setRecipe] = useState<Recipe>(null);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ const Details = () => {
         console.log(error);
       }
     }
-
     fetchRecipes();
   }, [id]);
 
@@ -30,7 +29,7 @@ const Details = () => {
           {
               recipe && <div className="text-gray-400 font-sans py-[50px]">
                 <h1 className="text-gray-300 text-3xl font-bold mb-4">{recipe.name}</h1>
-                <div className="w-full flex justify-center items-start gap-6">
+                <div className="w-full flex justify-center items-start gap-8">
                   <div>
                     <img src={recipe.image} alt={recipe.name}
                          className="max-w-[600px] h-auto rounded mb-4"/>
