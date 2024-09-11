@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from "../../components/header/Header.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store/store.ts";
