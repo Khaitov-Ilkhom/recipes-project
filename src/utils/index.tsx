@@ -11,7 +11,7 @@ const Loading = () => {
   )
 }
 
-const SuspenseElement = ({children} : any) => {
+const SuspenseElement = ({children} : {children : JSX.Element}) => {
   return (
       <Suspense fallback={<Loading/>}>
         {children}
