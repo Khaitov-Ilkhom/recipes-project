@@ -58,7 +58,7 @@ const Card = ({recipe}: { recipe: Recipe }) => {
             </p>
             <div className="flex items-center">
               <FaUser className="h-5 w-5 text-gray-400 mr-1"/>
-              <span>{recipe.servings} servings</span>
+              <span className="text-gray-400">{recipe.servings} servings</span>
             </div>
           </div>
 
