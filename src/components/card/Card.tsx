@@ -1,7 +1,6 @@
 import {Recipe} from "../../types"
 import {AiFillHeart, AiFillStar, AiOutlineHeart} from "react-icons/ai";
 import {BiTime} from "react-icons/bi";
-import {FaUser} from "react-icons/fa";
 import {GiCookingPot, GiFireBowl} from "react-icons/gi"
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
