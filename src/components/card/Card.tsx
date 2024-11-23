@@ -46,23 +46,16 @@ const Card = ({recipe}: { recipe: Recipe }) => {
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2 text-white">{recipe.name}</div>
 
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-2">
             <AiFillStar className="h-5 w-5 text-yellow-400"/>
             <span className="ml-1 text-gray-300 font-semibold">{recipe.rating.toFixed(1)}</span>
             <span className="ml-1 text-gray-500">({recipe.reviewCount} reviews)</span>
           </div>
 
-          <div className="flex justify-between mb-4">
+          <div className="flex justify-between mb-2 text-gray-400">
             <p className="text-gray-400 text-sm font-semibold">
               {recipe.cuisine} Cuisine
             </p>
-            <div className="flex items-center">
-              <FaUser className="h-5 w-5 text-gray-400 mr-1"/>
-              <span className="text-gray-400">{recipe.servings} servings</span>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-start mb-2 text-gray-400">
             <div className="flex items-center">
               <BiTime className="h-5 w-5 text-gray-400 mr-1"/>
               <span>{recipe.prepTimeMinutes + recipe.cookTimeMinutes} min</span>
@@ -73,7 +66,7 @@ const Card = ({recipe}: { recipe: Recipe }) => {
             </div>
           </div>
 
-          <div className="flex-1 mt-4">
+          <div className="flex-1 mt-2">
             <h4 className="font-semibold text-gray-300 mb-2">Main Ingredients:</h4>
             <ul className="list-disc list-inside text-gray-400">
               {recipe.ingredients.slice(0, 4).map((ingredient, index) => (

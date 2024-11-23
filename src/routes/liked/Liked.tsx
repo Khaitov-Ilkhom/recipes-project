@@ -8,6 +8,7 @@ import Container from "../../components/container/Container.tsx";
 const Liked = () => {
   const {products}: { products: Recipe[] } = useSelector((state: RootState) => state.like);
 
+
   return (
       <div className="w-full bg-gray-500 min-h-screen">
         <Header/>
